@@ -9,7 +9,21 @@ description = "Long-term memory for AI Agents"
 authors = [
     { name = "Mem0", email = "founders@mem0.ai" }
 ]
+readme = "README.md"
 requires-python = ">=3.9,<4.0"
+license = { text = "MIT" }
+keywords = ["ai", "memory", "agents", "rag", "vector-database"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
 dependencies = [
     "qdrant-client>=1.9.1",
     "pydantic>=2.10.0,<3.0.0",
@@ -21,7 +35,43 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-graph = ["langchain-neo4j>=0.4.0","langchain-aws>=0.2.23","neo4j>=5.23.1","rank-bm25>=0.2.2","kuzu>=0.11.0"]
-vector_stores = ["vecs>=0.4.0","chromadb>=0.4.24","weaviate-client>=4.4.0,<4.15.0","pinecone<=7.3.0","pinecone-text>=0.10.0","faiss-cpu>=1.7.4","upstash-vector>=0.1.0","azure-search-documents>=11.4.0b8","psycopg>=3.2.8","psycopg-pool>=3.2.6,<4.0.0","pymongo>=4.13.2","pymochow>=2.2.9","databricks-sdk>=0.63.0","azure-identity>=1.24.0","redis>=5.0.0,<6.0.0","redisvl>=0.1.0,<1.0.0","elasticsearch>=8.0.0,<9.0.0","pymilvus>=2.4.0,<2.6.0"]
-llms = ["groq>=0.3.0","together>=0.2.10","litellm>=1.74.0","openai>=1.90.0,<1.100.0","ollama>=0.1.0","vertexai>=0.1.0","google-generativeai>=0.3.0","google-genai>=1.0.0"]
-extras = ["boto3>=1.34.0","langchain-community>=0.0.0","sentence-transformers>=5.0.0","elasticsearch>=8.0.0,<9.0.0","opensearch-py>=2.0.0","langchain-memgraph>=0.1.0"]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "mypy>=1.0.0",
+    "ruff>=0.1.0",
+]
+test = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-mock>=3.10.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/mem0ai/mem0"
+Documentation = "https://docs.mem0.ai"
+Repository = "https://github.com/mem0ai/mem0"
+Issues = "https://github.com/mem0ai/mem0/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["mem0ai"]
+
+[tool.hatch.version]
+path = "mem0ai/__init__.py"
+
+[tool.black]
+line-length = 88
+target-version = ["py39"]
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[tool.ruff]
+line-length = 88
+target-version = "py39"
+select = ["E", "F", "W", "C90", "I", "N", "UP", "YTT", "S", "B", "A", "COM", "C4", "DTZ", "T10", "EM", "EXE", "FA", "ISC", "ICN", "G", "INP", "PIE", "T20", "PYI", "PT", "Q", "RSE", "RET", "SLF", "SLOT", "SIM", "TID", "TCH", "INT", "ARG", "PTH", "ERA", "PD", "PGH", "PL", "TRY", "FLY", "NPY", "RUF"]
+ignore = ["E501", "S101"]
